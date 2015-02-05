@@ -11,13 +11,14 @@ var path = require('path');
 var fs = require('fs');
 var mongoose=require('./lib/db');
 var Runner=require('./lib/runner.js');
+var mong =require('mongoose')
 
 //
 var autoIncrement = require('mongoose-auto-increment');
-var connection = mongoose.createConnection("mongodb://fachiz:112194@ds039431.mongolab.com:39431/trailrushdbase");
+var connection = mong.createConnection("mongodb://fachiz:112194@ds039431.mongolab.com:39431/trailrushdbase");
 autoIncrement.initialize(connection);
 
-var RunnerSchema = new db.Schema({
+var RunnerSchema = new mongoose.Schema({
 	Runner: String
 	,Age : String
 });
@@ -30,7 +31,7 @@ RunnerSchema.plugin(autoIncrement.plugin, {
 });
 
 
-var Runners=db.mongoose.model('ListofRunners', RunnerSchema);
+var Runners=mongoose.mongoose.model('ListofRunners', RunnerSchema);
 
 
 var app = express();
