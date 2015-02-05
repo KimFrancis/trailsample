@@ -31,7 +31,21 @@ RunnerSchema.plugin(autoIncrement.plugin, {
 });
 
 
-var Runners=mongoose.mongoose.model('ListofRunners', RunnerSchema);
+var ListofRunners=mongoose.mongoose.model('ListofRunners', RunnerSchema);
+
+function addPost(Runner, Age, callback) {
+	var instance = new ListofRunners();
+	instance.Runner=Runner;
+	instance.Age=Age; 
+	instance.save(function (err) {
+		if (err) {
+			callback(err);
+		}
+		else {
+			callback(null, instance);
+		}
+	});
+}
 
 
 var app = express();
@@ -72,7 +86,7 @@ app.post('/Register', function(req, res) {
 //var _id = req.body.Bimp;
 var Runners = req.body.Runner;
 var Age = req.body.Age;
-Runner.addPost(Runners, Age, function(err, user) {
+addPost(Runners, Age, function(err, user) {
 if (err) throw err;
 ListofRunners.find({"Runner": req.body.Runner},function(err,docs){
 		res.render('index', {views: docs});

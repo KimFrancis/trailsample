@@ -1,4 +1,4 @@
-var db = require('../lib/db');
+/*var db = require('../lib/db');
 var mongoose=require('mongoose');
 
 
@@ -25,4 +25,4 @@ function addPost(Runner, Age, callback) {
 			callback(null, instance);
 		}
 	});
-}
+}*/
